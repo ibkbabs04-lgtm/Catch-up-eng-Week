@@ -1,0 +1,3596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Engineering 12-Week Academic Tracker</title>
+
+<style>
+
+:root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #182033;
+    --muted: #687386;
+    --border: #dfe4ec;
+
+    --blue: #3157d5;
+    --blue-light: #eef2ff;
+
+    --red: #d64545;
+    --red-bg: #ffebee;
+
+    --yellow: #e5a11a;
+    --yellow-bg: #fff6dc;
+
+    --green: #20a464;
+    --green-bg: #e8f8f0;
+
+    --gray: #aab2c0;
+
+    --purple: #7146b8;
+
+    --shadow: 0 8px 25px rgba(20,35,70,.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #17275f,
+            #3157d5
+        );
+
+    color: white;
+
+    padding: 38px 25px;
+}
+
+.container {
+
+    max-width: 1500px;
+    margin: auto;
+}
+
+header h1 {
+
+    margin: 0 0 8px;
+
+    font-size: 32px;
+}
+
+header p {
+
+    max-width: 950px;
+
+    line-height: 1.6;
+
+    margin: 0;
+
+    opacity: .9;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.controls {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin: 20px 0;
+}
+
+button {
+
+    border:
+        1px solid
+        var(--border);
+
+    background: white;
+
+    color: var(--text);
+
+    padding: 10px 15px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: 650;
+
+    transition: .15s;
+}
+
+button:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.08);
+}
+
+.primary {
+
+    background: var(--blue);
+
+    border-color: var(--blue);
+
+    color: white;
+}
+
+.danger {
+
+    color: var(--red);
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6,1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.stat {
+
+    background: var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    box-shadow: var(--shadow);
+}
+
+.stat-number {
+
+    font-size: 26px;
+
+    font-weight: 800;
+}
+
+.stat-label {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card {
+
+    background: var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 20px;
+}
+
+.card h2 {
+
+    margin:
+        0 0 5px;
+
+    font-size: 21px;
+}
+
+.card-description {
+
+    color: var(--muted);
+
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   KNOWLEDGE LEGEND
+===================================================== */
+
+.instructions {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 12px;
+}
+
+.instruction {
+
+    border:
+        1px solid
+        var(--border);
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: #fafbfe;
+}
+
+.instruction strong {
+
+    display: block;
+
+    margin-bottom: 7px;
+}
+
+.red-box {
+
+    background: var(--red-bg);
+
+    border-color: #ffcdd2;
+}
+
+.yellow-box {
+
+    background: var(--yellow-bg);
+
+    border-color: #ffe0a3;
+}
+
+.green-box {
+
+    background: var(--green-bg);
+
+    border-color: #bcebd3;
+}
+
+.gray-box {
+
+    background: #f2f4f7;
+
+    border-color: #d9dde5;
+}
+
+
+/* =====================================================
+   ANALYTICS
+===================================================== */
+
+.analytics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+.chart-card {
+
+    min-height: 450px;
+}
+
+.chart-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 320px;
+
+    position: relative;
+}
+
+canvas {
+
+    max-width: 100%;
+
+    max-height: 330px;
+}
+
+
+/* =====================================================
+   GAP SUMMARY
+===================================================== */
+
+.gap-summary {
+
+    margin-top: 15px;
+}
+
+.gap-row {
+
+    display: grid;
+
+    grid-template-columns:
+        85px
+        1fr
+        45px;
+
+    gap: 10px;
+
+    align-items: center;
+
+    margin: 9px 0;
+
+    font-size: 13px;
+}
+
+.gap-bar {
+
+    height: 11px;
+
+    background: #edf0f5;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.gap-fill {
+
+    height: 100%;
+
+    border-radius: 10px;
+}
+
+.top-gap {
+
+    background:
+        linear-gradient(
+            135deg,
+            #7146b8,
+            #52318d
+        );
+
+    color: white;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    margin-top: 20px;
+}
+
+.top-gap small {
+
+    opacity: .8;
+}
+
+.top-gap strong {
+
+    display: block;
+
+    font-size: 23px;
+
+    margin-top: 4px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+}
+
+table {
+
+    border-collapse: collapse;
+
+    width: 100%;
+
+    min-width: 1550px;
+}
+
+th,
+td {
+
+    border-right:
+        1px solid
+        var(--border);
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    padding: 10px;
+
+    vertical-align: top;
+}
+
+th {
+
+    background: #f7f8fb;
+
+    font-size: 12px;
+
+    text-align: left;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 5;
+}
+
+th:first-child {
+
+    left: 0;
+
+    z-index: 7;
+}
+
+td:first-child {
+
+    position: sticky;
+
+    left: 0;
+
+    z-index: 4;
+
+    background: white;
+
+    font-weight: 800;
+
+    min-width: 85px;
+}
+
+.course-title {
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+}
+
+
+/* =====================================================
+   FORM INPUTS
+===================================================== */
+
+select,
+textarea,
+input[type="text"],
+input[type="number"] {
+
+    width: 100%;
+
+    border:
+        1px solid
+        #d5dbe5;
+
+    border-radius: 8px;
+
+    padding: 8px;
+
+    font-family: inherit;
+
+    background: white;
+
+    color: var(--text);
+}
+
+select {
+
+    margin-bottom: 7px;
+}
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 65px;
+
+    margin-bottom: 7px;
+}
+
+.field-label {
+
+    display: block;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    color: var(--muted);
+
+    margin: 3px 0;
+
+    text-transform: uppercase;
+
+    letter-spacing: .04em;
+}
+
+.week-cell {
+
+    background:
+        #f8f9fc !important;
+}
+
+.week-number {
+
+    font-size: 16px;
+}
+
+.week-focus {
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   COURSE SUMMARY
+===================================================== */
+
+.course-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6,1fr);
+
+    gap: 10px;
+}
+
+.summary-card {
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    background: #fafbfe;
+}
+
+.summary-card h3 {
+
+    margin:
+        0 0 8px;
+
+    font-size: 14px;
+}
+
+.progress-bar {
+
+    height: 9px;
+
+    background:
+        #e8ebf1;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+
+    height: 100%;
+
+    background: var(--blue);
+
+    transition: width .3s;
+}
+
+.summary-number {
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    margin: 6px 0;
+}
+
+
+/* =====================================================
+   REFLECTION
+===================================================== */
+
+.reflection-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 15px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-area {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.search-area input {
+
+    flex: 1;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    padding: 20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px) {
+
+    .dashboard,
+    .course-summary {
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .instructions {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .analytics-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:600px) {
+
+    .dashboard,
+    .course-summary {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .instructions,
+    .reflection-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+
+        font-size: 25px;
+    }
+}
+
+@media print {
+
+    .controls,
+    .search-area {
+
+        display: none;
+    }
+
+    body {
+
+        background: white;
+    }
+
+    .card {
+
+        box-shadow: none;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="container">
+
+<h1>
+🎓 First-Year Engineering — 12-Week Academic Tracker
+</h1>
+
+<p>
+
+Track what you actually know across
+MATH 100, ENGL 199, PHYS 130, CHEM 103,
+ENGG 130 and ENCMP 100.
+
+The dashboard automatically changes as you classify
+your concepts.
+
+</p>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     CONTROLS
+===================================================== -->
+
+<div class="controls">
+
+<button
+class="primary"
+onclick="saveData()">
+
+💾 Save Progress
+
+</button>
+
+
+<button
+onclick="downloadBackup()">
+
+⬇ Export Backup
+
+</button>
+
+
+<button
+onclick="document.getElementById('fileInput').click()">
+
+⬆ Import Backup
+
+</button>
+
+
+<input
+type="file"
+id="fileInput"
+accept=".json"
+style="display:none"
+onchange="importBackup(event)"
+>
+
+
+<button
+onclick="window.print()">
+
+🖨 Print
+
+</button>
+
+
+<button
+class="danger"
+onclick="resetTracker()">
+
+Reset
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<div class="dashboard">
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="overallProgress">
+
+0%
+
+</div>
+
+<div class="stat-label">
+
+Tracker assessed
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="redCount">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+🔴 Don't understand
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="yellowCount">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+🟡 Need practice
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="greenCount">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+🟢 Confident
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="unclassifiedCount">
+
+72
+
+</div>
+
+<div class="stat-label">
+
+⚪ Not assessed
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-number"
+id="backlogCount">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+📚 Active backlog
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     KNOWLEDGE SYSTEM
+===================================================== -->
+
+<section class="card">
+
+<h2>
+🧠 Your Knowledge Classification System
+</h2>
+
+<p class="card-description">
+
+The chart below is only useful if you classify honestly.
+A yellow concept is not a failure — it tells you that
+you need practice rather than more passive studying.
+
+</p>
+
+
+<div class="instructions">
+
+
+<div class="instruction red-box">
+
+<strong>
+🔴 RED — DON'T UNDERSTAND
+</strong>
+
+You cannot explain the concept,
+don't know how to start,
+or don't know which method to use.
+
+<br><br>
+
+<strong>
+Action:
+</strong>
+
+Review briefly → basic problems →
+explain it yourself.
+
+</div>
+
+
+<div class="instruction yellow-box">
+
+<strong>
+🟡 YELLOW — NEED PRACTICE
+</strong>
+
+You understand the idea,
+but make mistakes,
+need hints,
+or are too slow.
+
+<br><br>
+
+<strong>
+Action:
+</strong>
+
+Practice → check errors →
+redo → timed practice.
+
+</div>
+
+
+<div class="instruction green-box">
+
+<strong>
+🟢 GREEN — CONFIDENT
+</strong>
+
+You can solve unfamiliar problems
+independently and explain why
+your method works.
+
+<br><br>
+
+<strong>
+Action:
+</strong>
+
+Move on. Revisit before exams.
+
+</div>
+
+
+<div class="instruction gray-box">
+
+<strong>
+⚪ NOT ASSESSED
+</strong>
+
+You haven't determined your level yet.
+
+<br><br>
+
+<strong>
+Action:
+</strong>
+
+Do a few problems or active recall
+and classify it honestly.
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LIVE ANALYTICS
+===================================================== -->
+
+<section class="card">
+
+<h2>
+📊 Live Knowledge Analytics
+</h2>
+
+<p class="card-description">
+
+Every time you change a status in the 12-week table,
+these charts update automatically.
+
+</p>
+
+
+<div class="analytics-grid">
+
+
+<!-- OVERALL PIE -->
+
+<div class="card chart-card">
+
+<h2>
+Overall Knowledge Distribution
+</h2>
+
+<p class="card-description">
+
+Across all 72 course/week cells.
+
+</p>
+
+<div class="chart-area">
+
+<canvas
+id="overallPie"
+width="350"
+height="350">
+</canvas>
+
+</div>
+
+</div>
+
+
+<!-- COURSE PIE -->
+
+<div class="card chart-card">
+
+<h2>
+Knowledge Distribution by Course
+</h2>
+
+<p class="card-description">
+
+This helps you see which course needs the
+largest share of your attention.
+
+</p>
+
+<div class="chart-area">
+
+<canvas
+id="coursePie"
+width="350"
+height="350">
+</canvas>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- COURSE GAP BREAKDOWN -->
+
+<div
+class="gap-summary"
+id="gapSummary">
+
+</div>
+
+
+<div
+class="top-gap"
+id="topGap">
+
+<small>
+CURRENT BIGGEST KNOWLEDGE GAP
+</small>
+
+<strong>
+No data yet
+</strong>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     COURSE SUMMARY
+===================================================== -->
+
+<section class="card">
+
+<h2>
+📈 Course Progress
+</h2>
+
+<p class="card-description">
+
+The percentage shows how much of the course
+you have actually assessed.
+
+</p>
+
+
+<div
+class="course-summary"
+id="courseSummary">
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="card">
+
+<h2>
+🔎 Search Tracker
+</h2>
+
+<p class="card-description">
+
+Search your notes for concepts, courses,
+weeks, or keywords.
+
+</p>
+
+
+<div class="search-area">
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search..."
+oninput="searchTracker()"
+>
+
+<button
+onclick="clearSearch()">
+
+Clear
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     12 WEEK TRACKER
+===================================================== -->
+
+<section class="card">
+
+<h2>
+📅 12-Week Knowledge Tracker
+</h2>
+
+<p class="card-description">
+
+For each course/week:
+
+<strong>
+Status → What don't I understand? → What do I need to do?
+</strong>
+
+Be specific.
+
+Instead of:
+
+<em>
+"I don't understand Week 3"
+</em>
+
+write:
+
+<em>
+"I understand derivatives but cannot apply the chain rule
+when the problem is written as a word problem."
+</em>
+
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Week
+</th>
+
+<th>
+MATH 100
+</th>
+
+<th>
+ENGL 199
+</th>
+
+<th>
+PHYS 130
+</th>
+
+<th>
+CHEM 103
+</th>
+
+<th>
+ENGG 130
+</th>
+
+<th>
+ENCMP 100
+</th>
+
+</tr>
+
+</thead>
+
+<tbody
+id="trackerBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     WEEKLY REFLECTION
+===================================================== -->
+
+<section class="card">
+
+<h2>
+📝 Weekly Diagnosis
+</h2>
+
+<p class="card-description">
+
+Complete this once each week.
+
+</p>
+
+<div
+id="reflectionContainer">
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ERROR LOG
+===================================================== -->
+
+<section class="card">
+
+<h2>
+❌ Master Error Log
+</h2>
+
+<p class="card-description">
+
+A mistake is only useful if you figure out
+why you made it and eventually redo the problem correctly.
+
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Course</th>
+<th>Topic</th>
+<th>What I did wrong</th>
+<th>Why?</th>
+<th>Correct method</th>
+<th>Redo date</th>
+<th>Fixed?</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="errorBody">
+
+<tr>
+
+<td>
+<input type="text" data-error="date">
+</td>
+
+<td>
+
+<select data-error="course">
+
+<option></option>
+
+<option>MATH 100</option>
+<option>ENGL 199</option>
+<option>PHYS 130</option>
+<option>CHEM 103</option>
+<option>ENGG 130</option>
+<option>ENCMP 100</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" data-error="topic">
+</td>
+
+<td>
+<textarea data-error="mistake"></textarea>
+</td>
+
+<td>
+<textarea data-error="cause"></textarea>
+</td>
+
+<td>
+<textarea data-error="fix"></textarea>
+</td>
+
+<td>
+<input type="text" data-error="redo">
+</td>
+
+<td>
+
+<select data-error="fixed">
+
+<option>No</option>
+<option>Yes</option>
+
+</select>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<button
+onclick="addErrorRow()"
+style="margin-top:12px">
+
++ Add Error
+
+</button>
+
+</section>
+
+
+<!-- =====================================================
+     TIMED PRACTICE
+===================================================== -->
+
+<section class="card">
+
+<h2>
+⏱ Timed Practice Tracker
+</h2>
+
+<p class="card-description">
+
+Use timing after you understand the material.
+Move through:
+
+<strong>
+Untimed → Timed → Exam conditions
+</strong>
+
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Date</th>
+<th>Course</th>
+<th>Topic</th>
+<th>Questions</th>
+<th>Time Allowed</th>
+<th>Time Used</th>
+<th>Correct</th>
+<th>What slowed me down?</th>
+<th>Next step</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="timedBody">
+
+<tr>
+
+<td>
+<input type="text" data-timed="date">
+</td>
+
+<td>
+
+<select data-timed="course">
+
+<option></option>
+
+<option>MATH 100</option>
+<option>ENGL 199</option>
+<option>PHYS 130</option>
+<option>CHEM 103</option>
+<option>ENGG 130</option>
+<option>ENCMP 100</option>
+
+</select>
+
+</td>
+
+<td>
+<input type="text" data-timed="topic">
+</td>
+
+<td>
+<input type="number" data-timed="questions">
+</td>
+
+<td>
+<input type="text" data-timed="allowed">
+</td>
+
+<td>
+<input type="text" data-timed="used">
+</td>
+
+<td>
+<input type="text" data-timed="correct">
+</td>
+
+<td>
+<textarea data-timed="slow"></textarea>
+</td>
+
+<td>
+<textarea data-timed="next"></textarea>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<button
+onclick="addTimedRow()"
+style="margin-top:12px">
+
++ Add Timed Session
+
+</button>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+Your objective is not to make the chart look green.
+Your objective is to make the chart become green
+because your understanding genuinely improved.
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   COURSE DATA
+===================================================== */
+
+const courses = [
+
+    "MATH 100",
+    "ENGL 199",
+    "PHYS 130",
+    "CHEM 103",
+    "ENGG 130",
+    "ENCMP 100"
+
+];
+
+
+const statuses = {
+
+    red: "🔴 Red — Don't understand",
+
+    yellow: "🟡 Yellow — Need practice",
+
+    green: "🟢 Green — Confident"
+
+};
+
+
+/* =====================================================
+   BUILD 12 WEEK TABLE
+===================================================== */
+
+const trackerBody =
+    document.getElementById(
+        "trackerBody"
+    );
+
+
+for(let week = 1; week <= 12; week++) {
+
+    const row =
+        document.createElement("tr");
+
+
+    row.innerHTML = `
+
+        <td class="week-cell">
+
+            <div class="week-number">
+
+                Week ${week}
+
+            </div>
+
+            <div class="week-focus">
+
+                ${getWeekFocus(week)}
+
+            </div>
+
+        </td>
+
+    `;
+
+
+    courses.forEach(
+        (course, courseIndex) => {
+
+            const cell =
+                document.createElement("td");
+
+
+            const statusId =
+                `w${week}_c${courseIndex}_status`;
+
+
+            const conceptId =
+                `w${week}_c${courseIndex}_concept`;
+
+
+            const actionId =
+                `w${week}_c${courseIndex}_action`;
+
+
+            cell.innerHTML = `
+
+                <div class="course-title">
+
+                    ${course}
+
+                </div>
+
+
+                <label class="field-label">
+
+                    Knowledge level
+
+                </label>
+
+
+                <select
+                    id="${statusId}"
+                    data-tracker="${statusId}"
+                    onchange="updateDashboard()"
+                >
+
+                    <option value="">
+                        ⚪ Not assessed
+                    </option>
+
+                    <option value="red">
+                        ${statuses.red}
+                    </option>
+
+                    <option value="yellow">
+                        ${statuses.yellow}
+                    </option>
+
+                    <option value="green">
+                        ${statuses.green}
+                    </option>
+
+                </select>
+
+
+                <label class="field-label">
+
+                    What don't I understand?
+
+                </label>
+
+
+                <textarea
+                    id="${conceptId}"
+                    data-tracker="${conceptId}"
+                    placeholder="Specific concept, skill, formula, question type..."
+                ></textarea>
+
+
+                <label class="field-label">
+
+                    What do I need to do?
+
+                </label>
+
+
+                <textarea
+                    id="${actionId}"
+                    data-tracker="${actionId}"
+                    placeholder="Review / problems / memorize / timed..."
+                ></textarea>
+
+            `;
+
+
+            row.appendChild(cell);
+
+        }
+    );
+
+
+    trackerBody.appendChild(row);
+
+}
+
+
+/* =====================================================
+   WEEK FOCUS
+===================================================== */
+
+function getWeekFocus(week) {
+
+    if(week <= 2)
+        return "Foundation";
+
+    if(week <= 4)
+        return "Find gaps";
+
+    if(week <= 6)
+        return "Midterms + backlog";
+
+    if(week <= 8)
+        return "Consolidate";
+
+    if(week <= 10)
+        return "Mixed + timed";
+
+    if(week === 11)
+        return "Exam prep";
+
+    return "Final review";
+
+}
+
+
+/* =====================================================
+   CANVAS PIE CHART
+===================================================== */
+
+function drawPieChart(
+    canvasId,
+    values,
+    labels,
+    colors
+) {
+
+    const canvas =
+        document.getElementById(
+            canvasId
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const width =
+        canvas.width;
+
+
+    const height =
+        canvas.height;
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    const total =
+        values.reduce(
+            (a,b) => a+b,
+            0
+        );
+
+
+    if(total === 0) {
+
+        ctx.fillStyle = "#eef0f4";
+
+        ctx.beginPath();
+
+        ctx.arc(
+            width/2,
+            height/2,
+            115,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+
+        ctx.fillStyle = "#687386";
+
+        ctx.font =
+            "16px Segoe UI";
+
+
+        ctx.textAlign = "center";
+
+
+        ctx.fillText(
+            "No data yet",
+            width/2,
+            height/2
+        );
+
+
+        return;
+
+    }
+
+
+    let startAngle =
+        -Math.PI/2;
+
+
+    const centerX =
+        width/2;
+
+
+    const centerY =
+        height/2;
+
+
+    const radius = 125;
+
+
+    values.forEach(
+        (value,index) => {
+
+            if(value === 0)
+                return;
+
+
+            const sliceAngle =
+                (value/total)
+                * Math.PI
+                * 2;
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                centerX,
+                centerY
+            );
+
+
+            ctx.arc(
+                centerX,
+                centerY,
+                radius,
+                startAngle,
+                startAngle + sliceAngle
+            );
+
+
+            ctx.closePath();
+
+
+            ctx.fillStyle =
+                colors[index];
+
+
+            ctx.fill();
+
+
+            startAngle +=
+                sliceAngle;
+
+        }
+    );
+
+
+    /* Center hole */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        centerX,
+        centerY,
+        65,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fillStyle =
+        "white";
+
+    ctx.fill();
+
+
+    /* Center total */
+
+    ctx.fillStyle =
+        "#182033";
+
+    ctx.font =
+        "bold 25px Segoe UI";
+
+    ctx.textAlign =
+        "center";
+
+    ctx.textBaseline =
+        "middle";
+
+
+    ctx.fillText(
+        total,
+        centerX,
+        centerY - 8
+    );
+
+
+    ctx.font =
+        "12px Segoe UI";
+
+
+    ctx.fillStyle =
+        "#687386";
+
+
+    ctx.fillText(
+        "assessed",
+        centerX,
+        centerY + 15
+    );
+
+
+    /* Legend */
+
+    const legendX = 25;
+
+    let legendY = 320;
+
+
+    labels.forEach(
+        (label,index) => {
+
+            ctx.fillStyle =
+                colors[index];
+
+
+            ctx.fillRect(
+                legendX,
+                legendY - 9,
+                12,
+                12
+            );
+
+
+            ctx.fillStyle =
+                "#182033";
+
+
+            ctx.font =
+                "12px Segoe UI";
+
+
+            ctx.textAlign =
+                "left";
+
+
+            ctx.fillText(
+                `${label}: ${values[index]}`,
+                legendX + 20,
+                legendY
+            );
+
+
+            legendY += 20;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE CHARTS
+===================================================== */
+
+function updateCharts() {
+
+    let red = 0;
+
+    let yellow = 0;
+
+    let green = 0;
+
+    let unclassified = 0;
+
+
+    const courseData = {};
+
+
+    courses.forEach(
+        course => {
+
+            courseData[course] = {
+
+                red: 0,
+
+                yellow: 0,
+
+                green: 0,
+
+                blank: 0
+
+            };
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(
+            "select[data-tracker]"
+        )
+        .forEach(
+            select => {
+
+                const value =
+                    select.value;
+
+
+                const parts =
+                    select.id.split("_");
+
+
+                const courseIndex =
+                    parseInt(
+                        parts[1].replace("c","")
+                    );
+
+
+                const course =
+                    courses[courseIndex];
+
+
+                if(value === "red") {
+
+                    red++;
+
+                    courseData[course].red++;
+
+                }
+
+                else if(value === "yellow") {
+
+                    yellow++;
+
+                    courseData[course].yellow++;
+
+                }
+
+                else if(value === "green") {
+
+                    green++;
+
+                    courseData[course].green++;
+
+                }
+
+                else {
+
+                    unclassified++;
+
+                    courseData[course].blank++;
+
+                }
+
+            }
+        );
+
+
+    /* Overall chart */
+
+    drawPieChart(
+
+        "overallPie",
+
+        [
+            red,
+            yellow,
+            green,
+            unclassified
+        ],
+
+        [
+            "Red",
+            "Yellow",
+            "Green",
+            "Not assessed"
+        ],
+
+        [
+            "#d64545",
+            "#e5a11a",
+            "#20a464",
+            "#aab2c0"
+        ]
+
+    );
+
+
+    /* =================================================
+       COURSE CHART
+
+       Each course gets its total number of
+       RED concepts.
+
+       This answers:
+       "Which course has the most unresolved material?"
+    ================================================= */
+
+    const redByCourse =
+        courses.map(
+            course =>
+                courseData[course].red
+        );
+
+
+    drawPieChart(
+
+        "coursePie",
+
+        redByCourse,
+
+        courses,
+
+        [
+            "#3157d5",
+            "#7146b8",
+            "#20a464",
+            "#d64545",
+            "#e5a11a",
+            "#8a6f52"
+        ]
+
+    );
+
+
+    updateGapSummary(
+        courseData
+    );
+
+}
+
+
+/* =====================================================
+   GAP SUMMARY
+===================================================== */
+
+function updateGapSummary(
+    courseData
+) {
+
+    const container =
+        document.getElementById(
+            "gapSummary"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const redValues =
+        courses.map(
+            course =>
+                courseData[course].red
+        );
+
+
+    const max =
+        Math.max(
+            ...redValues
+        );
+
+
+    courses.forEach(
+        course => {
+
+            const count =
+                courseData[course].red;
+
+
+            const percentage =
+                max === 0
+                ? 0
+                : (count/max)*100;
+
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "gap-row";
+
+
+            row.innerHTML = `
+
+                <div>
+                    ${course}
+                </div>
+
+
+                <div class="gap-bar">
+
+                    <div
+                        class="gap-fill"
+                        style="
+                            width:${percentage}%;
+                            background:#d64545;
+                        "
+                    ></div>
+
+                </div>
+
+
+                <strong>
+                    ${count}
+                </strong>
+
+            `;
+
+
+            container.appendChild(row);
+
+        }
+    );
+
+
+    const topCourse =
+        courses[
+            redValues.indexOf(max)
+        ];
+
+
+    const topGap =
+        document.getElementById(
+            "topGap"
+        );
+
+
+    if(max === 0) {
+
+        topGap.innerHTML = `
+
+            <small>
+                CURRENT BIGGEST KNOWLEDGE GAP
+            </small>
+
+            <strong>
+                🎉 No red concepts yet
+            </strong>
+
+            <div style="margin-top:5px;">
+                Start assessing your material honestly.
+            </div>
+
+        `;
+
+    }
+
+    else {
+
+        topGap.innerHTML = `
+
+            <small>
+                CURRENT BIGGEST KNOWLEDGE GAP
+            </small>
+
+            <strong>
+                ${topCourse}
+            </strong>
+
+            <div style="margin-top:5px;">
+
+                ${max} red concept${max === 1 ? "" : "s"}
+
+                — prioritize this course when
+                planning your backlog blocks.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function updateDashboard() {
+
+    const selects =
+        document.querySelectorAll(
+            "select[data-tracker]"
+        );
+
+
+    let red = 0;
+
+    let yellow = 0;
+
+    let green = 0;
+
+    let blank = 0;
+
+
+    selects.forEach(
+        select => {
+
+            if(select.value === "red")
+                red++;
+
+            else if(select.value === "yellow")
+                yellow++;
+
+            else if(select.value === "green")
+                green++;
+
+            else
+                blank++;
+
+        }
+    );
+
+
+    const total =
+        selects.length;
+
+
+    const assessed =
+        total - blank;
+
+
+    const percentage =
+        total === 0
+        ? 0
+        : Math.round(
+            assessed / total * 100
+        );
+
+
+    document.getElementById(
+        "overallProgress"
+    ).textContent =
+        percentage + "%";
+
+
+    document.getElementById(
+        "redCount"
+    ).textContent =
+        red;
+
+
+    document.getElementById(
+        "yellowCount"
+    ).textContent =
+        yellow;
+
+
+    document.getElementById(
+        "greenCount"
+    ).textContent =
+        green;
+
+
+    document.getElementById(
+        "unclassifiedCount"
+    ).textContent =
+        blank;
+
+
+    document.getElementById(
+        "backlogCount"
+    ).textContent =
+        red + yellow;
+
+
+    updateCharts();
+
+    updateCourseSummary();
+
+}
+
+
+/* =====================================================
+   COURSE SUMMARY
+===================================================== */
+
+function updateCourseSummary() {
+
+    const container =
+        document.getElementById(
+            "courseSummary"
+        );
+
+
+    container.innerHTML = "";
+
+
+    courses.forEach(
+        (course,index) => {
+
+            let red = 0;
+
+            let yellow = 0;
+
+            let green = 0;
+
+            let blank = 0;
+
+
+            for(
+                let week = 1;
+                week <= 12;
+                week++
+            ) {
+
+                const select =
+                    document.getElementById(
+                        `w${week}_c${index}_status`
+                    );
+
+
+                if(!select)
+                    continue;
+
+
+                if(select.value === "red")
+                    red++;
+
+                else if(select.value === "yellow")
+                    yellow++;
+
+                else if(select.value === "green")
+                    green++;
+
+                else
+                    blank++;
+
+            }
+
+
+            const assessed =
+                red + yellow + green;
+
+
+            const percentage =
+                Math.round(
+                    assessed / 12 * 100
+                );
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "summary-card";
+
+
+            card.innerHTML = `
+
+                <h3>
+                    ${course}
+                </h3>
+
+
+                <div class="summary-number">
+
+                    ${percentage}%
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="
+                            width:${percentage}%;
+                        "
+                    ></div>
+
+                </div>
+
+
+                <div
+                    style="
+                        font-size:11px;
+                        color:#687386;
+                        margin-top:8px;
+                    "
+                >
+
+                    🔴 ${red}
+
+                    &nbsp;&nbsp;
+
+                    🟡 ${yellow}
+
+                    &nbsp;&nbsp;
+
+                    🟢 ${green}
+
+                    &nbsp;&nbsp;
+
+                    ⚪ ${blank}
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   REFLECTIONS
+===================================================== */
+
+const reflectionContainer =
+    document.getElementById(
+        "reflectionContainer"
+    );
+
+
+for(
+    let week = 1;
+    week <= 12;
+    week++
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.className =
+        "card";
+
+
+    div.style.boxShadow =
+        "none";
+
+
+    div.style.background =
+        "#fafbfe";
+
+
+    div.innerHTML = `
+
+        <h3>
+            Week ${week}
+        </h3>
+
+
+        <div
+            class="reflection-grid"
+        >
+
+
+            <div>
+
+                <label class="field-label">
+                    Biggest thing I learned
+                </label>
+
+                <textarea
+                    data-reflection="w${week}_learned"
+                    placeholder="What became clearer?"
+                ></textarea>
+
+            </div>
+
+
+            <div>
+
+                <label class="field-label">
+                    Biggest weakness
+                </label>
+
+                <textarea
+                    data-reflection="w${week}_weakness"
+                    placeholder="What still doesn't make sense?"
+                ></textarea>
+
+            </div>
+
+
+            <div>
+
+                <label class="field-label">
+                    Backlog I will eliminate
+                </label>
+
+                <textarea
+                    data-reflection="w${week}_backlog"
+                    placeholder="Exact concepts/questions..."
+                ></textarea>
+
+            </div>
+
+
+            <div>
+
+                <label class="field-label">
+                    Next week's priority
+                </label>
+
+                <textarea
+                    data-reflection="w${week}_priority"
+                    placeholder="Where should my study hours go?"
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    reflectionContainer.appendChild(
+        div
+    );
+
+}
+
+
+/* =====================================================
+   ERROR LOG
+===================================================== */
+
+function addErrorRow(
+    data = {}
+) {
+
+    const row =
+        document.createElement(
+            "tr"
+        );
+
+
+    row.innerHTML = `
+
+        <td>
+            <input
+                type="text"
+                data-error="date"
+                value="${escapeHTML(data.date || "")}"
+            >
+        </td>
+
+
+        <td>
+
+            <select
+                data-error="course"
+            >
+
+                <option></option>
+
+                ${courses.map(
+                    course =>
+
+                    `<option
+                        ${data.course === course
+                            ? "selected"
+                            : ""}
+                    >
+                        ${course}
+                    </option>`
+
+                ).join("")}
+
+            </select>
+
+        </td>
+
+
+        <td>
+            <input
+                type="text"
+                data-error="topic"
+                value="${escapeHTML(data.topic || "")}"
+            >
+        </td>
+
+
+        <td>
+            <textarea
+                data-error="mistake"
+            >${escapeHTML(data.mistake || "")}</textarea>
+        </td>
+
+
+        <td>
+            <textarea
+                data-error="cause"
+            >${escapeHTML(data.cause || "")}</textarea>
+        </td>
+
+
+        <td>
+            <textarea
+                data-error="fix"
+            >${escapeHTML(data.fix || "")}</textarea>
+        </td>
+
+
+        <td>
+            <input
+                type="text"
+                data-error="redo"
+                value="${escapeHTML(data.redo || "")}"
+            >
+        </td>
+
+
+        <td>
+
+            <select
+                data-error="fixed"
+            >
+
+                <option
+                    ${data.fixed !== "Yes"
+                        ? "selected"
+                        : ""}
+                >
+                    No
+                </option>
+
+                <option
+                    ${data.fixed === "Yes"
+                        ? "selected"
+                        : ""}
+                >
+                    Yes
+                </option>
+
+            </select>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById(
+            "errorBody"
+        )
+        .appendChild(row);
+
+}
+
+
+function loadErrors() {
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "engineering12week_errors"
+            ) || "[]"
+        );
+
+
+    if(saved.length === 0)
+        return;
+
+
+    document.getElementById(
+        "errorBody"
+    ).innerHTML = "";
+
+
+    saved.forEach(
+        item =>
+            addErrorRow(item)
+    );
+
+}
+
+
+/* =====================================================
+   TIMED PRACTICE
+===================================================== */
+
+function addTimedRow(
+    data = {}
+) {
+
+    const row =
+        document.createElement(
+            "tr"
+        );
+
+
+    row.innerHTML = `
+
+        <td>
+
+            <input
+                type="text"
+                data-timed="date"
+                value="${escapeHTML(data.date || "")}"
+            >
+
+        </td>
+
+
+        <td>
+
+            <select
+                data-timed="course"
+            >
+
+                <option></option>
+
+                ${courses.map(
+                    course =>
+
+                    `<option
+                        ${data.course === course
+                            ? "selected"
+                            : ""}
+                    >
+                        ${course}
+                    </option>`
+
+                ).join("")}
+
+            </select>
+
+        </td>
+
+
+        <td>
+
+            <input
+                type="text"
+                data-timed="topic"
+                value="${escapeHTML(data.topic || "")}"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                type="number"
+                data-timed="questions"
+                value="${escapeHTML(data.questions || "")}"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                type="text"
+                data-timed="allowed"
+                value="${escapeHTML(data.allowed || "")}"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                type="text"
+                data-timed="used"
+                value="${escapeHTML(data.used || "")}"
+            >
+
+        </td>
+
+
+        <td>
+
+            <input
+                type="text"
+                data-timed="correct"
+                value="${escapeHTML(data.correct || "")}"
+            >
+
+        </td>
+
+
+        <td>
+
+            <textarea
+                data-timed="slow"
+            >${escapeHTML(data.slow || "")}</textarea>
+
+        </td>
+
+
+        <td>
+
+            <textarea
+                data-timed="next"
+            >${escapeHTML(data.next || "")}</textarea>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById(
+            "timedBody"
+        )
+        .appendChild(row);
+
+}
+
+
+function loadTimed() {
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "engineering12week_timed"
+            ) || "[]"
+        );
+
+
+    if(saved.length === 0)
+        return;
+
+
+    document.getElementById(
+        "timedBody"
+    ).innerHTML = "";
+
+
+    saved.forEach(
+        item =>
+            addTimedRow(item)
+    );
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveData() {
+
+    saveSilent();
+
+    alert(
+        "Progress saved successfully."
+    );
+
+}
+
+
+function saveSilent() {
+
+    const data = {};
+
+
+    document
+        .querySelectorAll(
+            "[data-tracker]"
+        )
+        .forEach(
+            element => {
+
+                data[element.id] =
+                    element.value;
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-reflection]"
+        )
+        .forEach(
+            element => {
+
+                data[
+                    element.dataset.reflection
+                ] =
+                    element.value;
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "engineering12week",
+        JSON.stringify(data)
+    );
+
+
+    saveRows();
+
+}
+
+
+function saveRows() {
+
+    const errors = [];
+
+
+    document
+        .querySelectorAll(
+            "#errorBody tr"
+        )
+        .forEach(
+            row => {
+
+                const item = {};
+
+
+                row
+                    .querySelectorAll(
+                        "[data-error]"
+                    )
+                    .forEach(
+                        input => {
+
+                            item[
+                                input.dataset.error
+                            ] =
+                                input.value;
+
+                        }
+                    );
+
+
+                errors.push(item);
+
+            }
+        );
+
+
+    const timed = [];
+
+
+    document
+        .querySelectorAll(
+            "#timedBody tr"
+        )
+        .forEach(
+            row => {
+
+                const item = {};
+
+
+                row
+                    .querySelectorAll(
+                        "[data-timed]"
+                    )
+                    .forEach(
+                        input => {
+
+                            item[
+                                input.dataset.timed
+                            ] =
+                                input.value;
+
+                        }
+                    );
+
+
+                timed.push(item);
+
+            }
+        );
+
+
+    localStorage.setItem(
+        "engineering12week_errors",
+        JSON.stringify(errors)
+    );
+
+
+    localStorage.setItem(
+        "engineering12week_timed",
+        JSON.stringify(timed)
+    );
+
+}
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+function loadData() {
+
+    const data =
+        JSON.parse(
+            localStorage.getItem(
+                "engineering12week"
+            ) || "{}"
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-tracker]"
+        )
+        .forEach(
+            element => {
+
+                if(
+                    data[element.id]
+                    !== undefined
+                ) {
+
+                    element.value =
+                        data[element.id];
+
+                }
+
+            }
+        );
+
+
+    document
+        .querySelectorAll(
+            "[data-reflection]"
+        )
+        .forEach(
+            element => {
+
+                if(
+                    data[
+                        element.dataset.reflection
+                    ]
+                    !== undefined
+                ) {
+
+                    element.value =
+                        data[
+                            element.dataset.reflection
+                        ];
+
+                }
+
+            }
+        );
+
+
+    loadErrors();
+
+    loadTimed();
+
+    updateDashboard();
+
+}
+
+
+/* =====================================================
+   EXPORT
+===================================================== */
+
+function downloadBackup() {
+
+    saveSilent();
+
+
+    const backup = {
+
+        main:
+            localStorage.getItem(
+                "engineering12week"
+            ),
+
+        errors:
+            localStorage.getItem(
+                "engineering12week_errors"
+            ),
+
+        timed:
+            localStorage.getItem(
+                "engineering12week_timed"
+            )
+
+    };
+
+
+    const blob =
+        new Blob(
+            [
+                JSON.stringify(
+                    backup,
+                    null,
+                    2
+                )
+            ],
+            {
+                type:
+                    "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const a =
+        document.createElement(
+            "a"
+        );
+
+
+    a.href = url;
+
+    a.download =
+        "engineering_12_week_backup.json";
+
+
+    a.click();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* =====================================================
+   IMPORT
+===================================================== */
+
+function importBackup(event) {
+
+    const file =
+        event.target.files[0];
+
+
+    if(!file)
+        return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e) {
+
+            try {
+
+                const data =
+                    JSON.parse(
+                        e.target.result
+                    );
+
+
+                if(data.main) {
+
+                    localStorage.setItem(
+                        "engineering12week",
+                        data.main
+                    );
+
+                }
+
+
+                if(data.errors) {
+
+                    localStorage.setItem(
+                        "engineering12week_errors",
+                        data.errors
+                    );
+
+                }
+
+
+                if(data.timed) {
+
+                    localStorage.setItem(
+                        "engineering12week_timed",
+                        data.timed
+                    );
+
+                }
+
+
+                loadData();
+
+
+                alert(
+                    "Backup imported successfully."
+                );
+
+            }
+
+            catch(error) {
+
+                alert(
+                    "Could not import this backup."
+                );
+
+            }
+
+        };
+
+
+    reader.readAsText(file);
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchTracker() {
+
+    const search =
+        document
+            .getElementById(
+                "searchBox"
+            )
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    document
+        .querySelectorAll(
+            "#trackerBody tr"
+        )
+        .forEach(
+            row => {
+
+                const text =
+                    row.innerText
+                        .toLowerCase();
+
+
+                row.style.display =
+                    text.includes(search)
+                    ? ""
+                    : "none";
+
+            }
+        );
+
+}
+
+
+function clearSearch() {
+
+    document
+        .getElementById(
+            "searchBox"
+        )
+        .value = "";
+
+
+    searchTracker();
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetTracker() {
+
+    const confirmed =
+        confirm(
+            "Erase ALL 12-week tracker data?"
+        );
+
+
+    if(!confirmed)
+        return;
+
+
+    localStorage.removeItem(
+        "engineering12week"
+    );
+
+
+    localStorage.removeItem(
+        "engineering12week_errors"
+    );
+
+
+    localStorage.removeItem(
+        "engineering12week_timed"
+    );
+
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   AUTO UPDATE
+===================================================== */
+
+document.addEventListener(
+    "input",
+    function() {
+
+        updateDashboard();
+
+    }
+);
+
+
+document.addEventListener(
+    "change",
+    function() {
+
+        updateDashboard();
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+loadData();
+
+</script>
+
+</body>
+</html>
